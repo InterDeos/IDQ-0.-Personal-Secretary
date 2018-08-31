@@ -12,7 +12,8 @@ namespace IDQ_0__Personal_Secretary.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            ViewData["Message"] = "Hello!";
+            return View("Index");
         }
 
         public IActionResult About()
