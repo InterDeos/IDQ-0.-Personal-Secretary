@@ -37,11 +37,11 @@ namespace IDQ_0__Personal_Secretary
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
+            /* if (env.IsDevelopment())
+             {
+                 app.UseDeveloperExceptionPage();
+             }
+             else
             {
                 app.UseExceptionHandler("/Home/Error");
             }
@@ -54,7 +54,20 @@ namespace IDQ_0__Personal_Secretary
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });*/
+
+            app.Use(async (context, next) => {
+                await context.Response.WriteAsync($"hello");
+                await next();
             });
+
+            app.Run(async (context) => {
+                string host = context.Request.Host.Value;
+                string path = context.Request.Path;
+
+                await context.Response.WriteAsync($"HOST: {host} PATH: {path}");
+            });
+            
         }
     }
 }
