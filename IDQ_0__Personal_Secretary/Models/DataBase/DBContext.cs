@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace IDQ_0__Personal_Secretary.Models.DataBase
 {
@@ -11,6 +10,8 @@ namespace IDQ_0__Personal_Secretary.Models.DataBase
     {
         public DbSet<Project> Projects { get; set; }
         public DbSet<Stage> Stages { get; set; }
+        public DbSet<BuisnessProcess> BPs { get; set; }
+        public DbSet<Task> Tasks { get; set; }
 
         public DBContext(DbContextOptions<DBContext> options)
             :base(options)
