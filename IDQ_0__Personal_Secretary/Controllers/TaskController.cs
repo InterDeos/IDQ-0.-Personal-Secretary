@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace IDQ_0__Personal_Secretary.Controllers
 {
     public class TaskController : Controller
-    {
+    { 
         private DBContext db;
 
         public TaskController(DBContext context)

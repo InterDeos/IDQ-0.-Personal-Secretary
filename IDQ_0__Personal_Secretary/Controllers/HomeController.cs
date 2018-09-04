@@ -18,33 +18,9 @@ namespace IDQ_0__Personal_Secretary.Controllers
     }
     public class HomeController : Controller
     {
-        DBContext db;
-        public HomeController(DBContext context)
+        public string Index()
         {
-            db = context;
-        }
-        public IActionResult Index()
-        {
-            return View(db.Projects.ToList());
-        }
-        [HttpGet]
-        public IActionResult Buy(int id)
-        {
-            ViewBag.ProjectId = 0;
-            return View();
-        }
-        [HttpPost]
-        public string Buy(Project project)
-        {
-            db.Projects.Add(project);
-            db.SaveChanges();
-            return $"Project added";
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()  
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return "Index";
         }
     }
 }
