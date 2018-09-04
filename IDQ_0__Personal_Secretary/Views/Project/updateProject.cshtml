@@ -1,0 +1,34 @@
+﻿@model IDQ_0__Personal_Secretary.Models.DataBase.Entities.Project
+@{
+    //ViewData["Title"] = "updateProject";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Оформление заказа</title>
+</head>
+<body>
+    <div>
+        <h2>updateProject</h2>
+        <form method="post">
+            <input type="hidden" value="@Model.Id" name="PhoneId" />
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" value="@Model.Name" name="Name" /> </td>
+                </tr>
+                <tr>
+                    <td>Priority</td>
+                    <td><input type="number" value="@Model.Priority" name="Priority" /></td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td><textarea name="Description">@Model.Description</textarea></td>
+                </tr>
+                <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

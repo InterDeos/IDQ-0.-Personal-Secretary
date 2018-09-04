@@ -34,15 +34,15 @@ namespace IDQ_0__Personal_Secretary.Controllers
             return View();
         }
         [HttpPost]
-        public string Buy(PR project)
+        public string Buy(Project project)
         {
-            db.Projects.Add(new Project(project.Priority, project.Name, project.Description));
+            db.Projects.Add(project);
             db.SaveChanges();
             return $"Project added";
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Error()  
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }

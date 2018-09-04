@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<IDQ_0__Personal_Secretary.Models.DataBase.Entities.Project>
 @{
-    //ViewData["Title"] = "Список Projects";
+    //ViewData["Title"] = "Index";
     Layout = null;
 }
 <!DOCTYPE html>
@@ -10,28 +10,30 @@
     <title>Магазин смартфонов</title>
 </head>
 <body>
-    <h2>Home Controller</h2>
-    <a href="~/Project/all"><h3>Project All</h3></a>
+    <h2>All Projects</h2>
     <br />
     <br />
-    <h3>Смартфоны</h3>
+    <a href="~/Project/addProject"><h3>Add Project</h3></a>
     <table>
         <tr>
             <td>ID</td>
-            <td>Priority</td> 
+            <td>Priority</td>
             <td>Name</td>
             <td>Descripiton</td>
             <td></td>
         </tr>
-        @foreach (var project in Model){
+        @foreach (var project in Model)
+        {
         <tr>
             <td>@project.Id</td>
             <td>@project.Priority</td>
-            <td>@project.Name</td>
+            <td><a href="~/Project/View?id=@project.Id">@project.Name</a></td>
             <td>@project.Description</td>
-            <td><a href="~/Home/Buy/@project.Id">Купить</a></td>
+            <td><a href="~/Project/updateProject?id=@project.Id">Update</a></td>
+            <td><a href="~/Project/deleteProject?id=@project.Id">Delete</a></td>
         </tr>
         }
     </table>
 </body>
 </html>
+

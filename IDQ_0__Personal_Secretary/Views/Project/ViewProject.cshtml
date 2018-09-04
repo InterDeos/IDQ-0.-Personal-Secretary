@@ -1,0 +1,38 @@
+﻿@model IEnumerable<IDQ_0__Personal_Secretary.Models.DataBase.Entities.Stage>
+@{
+    // ViewData["Title"] = "View";
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Магазин смартфонов</title>
+</head>
+<body>
+    <h2>Project: @ViewBag.Id @ViewBag.Name</h2>
+    <h2>Priority: @ViewBag.Priority</h2>
+    <br />
+    <br />
+    <a href="~/Project/addProject"><h3>Add Stage</h3></a>
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>Priority</td>
+            <td>Name</td>
+            <td></td>
+        </tr>
+        @foreach (var stage in Model)
+        {
+            <tr>
+                <td>@stage.Id</td>
+                <td>@stage.Priority</td>
+                <td>@stage.Name</td>
+                <td><a href="~/Project/updateProject?id=@stage.Id">Update</a></td>
+                <td><a href="~/Project/deleteProject?id=@stage.Id">Delete</a></td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
+

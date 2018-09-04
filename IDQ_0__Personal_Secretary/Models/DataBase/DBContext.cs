@@ -10,6 +10,7 @@ namespace IDQ_0__Personal_Secretary.Models.DataBase
     public class DBContext: DbContext
     {
         public DbSet<Project> Projects { get; set; }
+        public DbSet<Stage> Stages { get; set; }
 
         public DBContext(DbContextOptions<DBContext> options)
             :base(options)

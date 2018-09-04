@@ -15,9 +15,20 @@ namespace IDQ_0__Personal_Secretary.Models.DataBase
                 List<Project> projects = new List<Project>();
                 for(int i = 0; i < 10; i++)
                 {
-                    projects.Add(new Project(i, $"Project #{i}", $"description {i}"));
+                    projects.Add(new Project { Priority = i, Name = $"Project #{i}", Description = $"description {i}" });
                 }
                 db.Projects.AddRange(projects);
+                db.SaveChanges();
+
+                foreach(Project project in projects)
+                {
+                    project.Stages = new List<Stage>();
+
+                    for (int i = 0; i < 3; i++)
+                    {
+                        project.Stages.Add(new Stage { Priority = i, Name = $"Stage #{i}" } );
+                    }
+                }
                 db.SaveChanges();
             }
         }
