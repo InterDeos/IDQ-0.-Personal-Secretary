@@ -18,6 +18,15 @@ namespace IDQ_0__Personal_Secretary.Controllers
     }
     public class HomeController : Controller
     {
+        private DataBase data;
+        public HomeController()
+        {
+
+        }
+        public HomeController(DBContext context)
+        {
+            data = new DataBase(context);
+        }
         public string Index()
         {
             return "Index";

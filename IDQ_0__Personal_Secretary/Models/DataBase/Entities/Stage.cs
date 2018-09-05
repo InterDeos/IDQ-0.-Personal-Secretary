@@ -14,5 +14,16 @@ namespace IDQ_0__Personal_Secretary.Models.DataBase.Entities
 
         public List<StageTarget> Targets { get; set; }
         public List<BuisnessProcess> BPs { get; set; }
+
+        public Stage Initialize()
+        {
+            Id = Id != 0 ? Id : Id;
+            Priority = Priority != 0 ? Priority : 1;
+            Name = Name ?? "Name Stage";
+            Targets = Targets ?? new List<StageTarget>();
+            BPs = BPs ?? new List<BuisnessProcess>();
+
+            return this;
+        }
     }
 }

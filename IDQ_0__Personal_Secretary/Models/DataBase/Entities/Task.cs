@@ -14,5 +14,16 @@ namespace IDQ_0__Personal_Secretary.Models.DataBase.Entities
         public BuisnessProcess BuisnessProcess { get; set; }
 
         public List<TaskTarget> Targets { get; set; }
+
+        public Task Initialize()
+        {
+            Id = Id != 0 ? Id : Id;
+            Priority = Priority != 0 ? Priority : 1;
+            Name = Name ?? "Name Task";
+            Description = Description ?? "";
+            Targets = Targets ?? new List<TaskTarget>();
+
+            return this;
+        }
     }
 }
