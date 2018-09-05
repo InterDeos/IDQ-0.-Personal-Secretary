@@ -1,7 +1,5 @@
-﻿using System;
+﻿using IDQ_0__Personal_Secretary.Models.DataBase.Entities.Targets;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace IDQ_0__Personal_Secretary.Models.DataBase.Entities
 {
@@ -13,6 +11,8 @@ namespace IDQ_0__Personal_Secretary.Models.DataBase.Entities
 
         public int ProjectId { get; set; }
         public Project Project { get; set; }
+
+        public List<StageTarget> Targets { get; set; }
         public List<BuisnessProcess> BPs { get; set; }
     }
 }

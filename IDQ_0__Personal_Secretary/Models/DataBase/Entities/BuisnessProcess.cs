@@ -1,6 +1,5 @@
-﻿using System;
+﻿using IDQ_0__Personal_Secretary.Models.DataBase.Entities.Targets;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace IDQ_0__Personal_Secretary.Models.DataBase.Entities
 {
@@ -13,6 +12,7 @@ namespace IDQ_0__Personal_Secretary.Models.DataBase.Entities
 
         public int StageId { get; set; }
         public Stage Stage { get; set; }
+        public BPTarget Target { get; set; }
 
         public List<Task> Tasks { get; set; }
     }
