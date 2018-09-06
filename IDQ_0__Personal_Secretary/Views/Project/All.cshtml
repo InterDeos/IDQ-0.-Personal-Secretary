@@ -3,8 +3,12 @@
     ViewData["Title"] = "IDQ 0. Projects";
 }
 @section HEAD
-{
+    {
     <link rel="stylesheet" href="~/css/view/ProjectListStyle.css">
+}
+@section SideBar
+{
+    <span class="button"><a href="~/Project/addProject">New project</a></span>
 }
 @foreach (var project in Model)
 {
@@ -15,8 +19,9 @@
             <div class="options-container">
                 <div class="options">
                     <span><i class="fas fa-ellipsis-h"></i></span>
-                    <span class="button">Add files</span>
-                    <span class="button">Delete</span>
+                    <span class="button"><a href="#">Add Target</a></span>
+                    <span class="button"><a href="~/Project/updateProject?id=@project.Id">Update</a></span>
+                    <span class="button"><a href="~/Project/deleteProject?id=@project.Id">Delete</a></span>
                 </div>
             </div>
         </div>
@@ -24,16 +29,6 @@
             <div class="priority">
                 <div class="article_information">
                     <h3><div class="text_article">Priority:</div><div class="priority_value">@project.Priority</div></h3>
-                </div>
-            </div>
-            <div class="time">
-                <div class="article_information">
-                    <h3><div class="text_article">Time:</div><div>40 days</div><div>20.12.2018</div></h3>
-                </div>
-            </div>
-            <div class="status">
-                <div class="article_information">
-                    <h3><div class="text_article">Status:</div><div>Active</div></h3>
                 </div>
             </div>
             <div class="targets">
@@ -47,13 +42,6 @@
                             <div class="check_text">@target.Name</div>
                         </label>
                     }
-                </div>
-            </div>
-            <div class="description">
-                <h3>Description</h3>
-                <div class="text">
-                    <b>MARKDOWN TEXT</b><br><br>
-                    <p>@project.Description</p>
                 </div>
             </div>
         </div>

@@ -20,10 +20,10 @@ namespace IDQ_0__Personal_Secretary.Controllers
         [ActionName("all")]
         public IActionResult Index()
         {
-            return View("All", db.GetAllProjects());
+            return View("All", db.GetAllProjects().OrderByDescending(p=> p.Priority));
         }
 
-        /*[HttpGet]
+        [HttpGet]
         [ActionName("addProject")]
         public IActionResult Add()
         {
@@ -33,8 +33,13 @@ namespace IDQ_0__Personal_Secretary.Controllers
         [ActionName("addProject")]
         public IActionResult Add(Project project)
         {
-            db.Projects.Add(project);
-            db.SaveChanges();
+            db.AddProject(project);
+            return LocalRedirect("~/Project/all");
+        }
+        [ActionName("deleteProject")]
+        public IActionResult Delete(int id)
+        {
+            db.DeleteProject(id);
             return LocalRedirect("~/Project/all");
         }
 
@@ -42,26 +47,19 @@ namespace IDQ_0__Personal_Secretary.Controllers
         [ActionName("updateProject")]
         public IActionResult Update(int id)
         {
-            return View("updateProject", db.Projects.Where(p=>p.Id==id).First());
+            return View("updateProject", db.GetProjectById(id));
         }
         [HttpPost]
         [ActionName("updateProject")]
         public IActionResult Update(Project project)
         {
-            db.Projects.Update(project);
-            db.SaveChanges();
+            db.UpdateProject(project);
             return LocalRedirect("~/Project/all");
         }
 
-        [ActionName("deleteProject")]
-        public IActionResult Delete(int id)
-        {
-            db.Projects.Remove(db.Projects.Where(p => p.Id == id).First());
-            db.SaveChanges();
-            return LocalRedirect("~/Project/all");
-        }
+        
 
-        public IActionResult View(int id)
+       /* public IActionResult View(int id)
         {
             Project project = db.Projects.Where(p => p.Id == id).First();
             ViewBag.Id = project.Id;
