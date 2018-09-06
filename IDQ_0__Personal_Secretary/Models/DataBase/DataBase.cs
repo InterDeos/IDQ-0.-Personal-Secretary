@@ -72,6 +72,66 @@ namespace IDQ_0__Personal_Secretary.Models.DataBase
                 db.SaveChanges();
             }
         }
+        public void DeleteProject(int id)
+        {
+            if (id > 0)
+            {
+                var projects = db.Projects.Where(p => p.Id == id);
+                if (projects.Any())
+                {
+                    var project = db.Projects.Where(p => p.Id == id).First();
+                    db.Projects.Remove(project);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        public void AddTargetInProject(int id, ProjectTarget target)
+        {
+            Project project = GetProjectById(id);
+            if (project != null)
+            {
+                project.Initialize();
+                project.Targets.Add(target);
+                db.SaveChanges();
+            }
+        }
+        public void UpdateTargetInProject(int id, ProjectTarget target)
+        {
+            var targets = GetProjectById(id).Targets;
+            if (targets.Any() && target.Id > 0)
+            {
+                var temp = targets.Where(t => t.Id == target.Id);
+                if (temp.Any())
+                {
+                    var tempTarget = temp.First();
+                    tempTarget.Name = target.Name;
+                    tempTarget.IsAchieved = target.IsAchieved;
+                    tempTarget.ProjectId = target.ProjectId;
+                    db.SaveChanges();
+                }
+            }
+        }
+        public void DeleteTargetFromProject(int id)
+        {
+            var targets = db.ProjectTargets.Where(t => t.Id == id);
+            if (targets.Any())
+            {
+                db.ProjectTargets.Remove(targets.First());
+                db.SaveChanges();
+            }
+        }
+
+        public void AddStage(int projectId, Stage stage)
+        {
+            var projects = db.Projects.Where(p => p.Id == projectId).ToList();
+            if (projects.Any())
+            {
+                stage.ProjectId = projectId;
+                db.Stages.Add(stage);
+                db.SaveChanges();
+            }
+        }
 
         public Project GetProjectById(int id)
         {
@@ -79,15 +139,11 @@ namespace IDQ_0__Personal_Secretary.Models.DataBase
             if (projects.Any())
             {
                 var temp = projects.First();
+                temp.Targets = db.Projects.Where(p => p.Id == id).First().Targets.ToList();
                 return temp.Initialize();
             }
                 
             else return null;
-        }
-
-        public void AddTargetInProject(int v, ProjectTarget target)
-        {
-            throw new NotImplementedException();
         }
     }
 }

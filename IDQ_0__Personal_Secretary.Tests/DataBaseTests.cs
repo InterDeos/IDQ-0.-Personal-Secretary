@@ -203,6 +203,28 @@ namespace IDQ_0__Personal_Secretary.Tests
                 result.Description == project.Description);
         }
         [Fact]
+        public void DeleteProject()
+        {
+            //Arrange
+            Project project = new Project { Name = "Test Project" };
+            Project result;
+            using (var context = GetContext())
+            {
+                var db = new DataBase(context);
+                db.ClearDataBase();
+                db.AddProject(project);
+                db.AddProject(new Project { Name = "Test Project 1" });
+                int id = db.GetAllProjects().Last().Id - 1;
+
+                //Act
+                db.DeleteProject(id);
+                result = db.GetProjectById(id);
+            }
+
+            //Assert
+            Assert.Null(result);
+        }
+        [Fact]
         public void GetProjectByIdNull()
         {
             //Arrange
@@ -240,28 +262,104 @@ namespace IDQ_0__Personal_Secretary.Tests
             //Assert
             Assert.Equal<Project>(result, project);
         }
-        /*[Fact]
+        [Fact]
         public void AddTargetInProject()
         {
             //Arrange
             Project project = new Project { Name = "Test Project" };
             ProjectTarget target = new ProjectTarget { Name = "Test Target for Project", IsAchieved = false };
-            Project result;
+            ProjectTarget result;
             using (var context = GetContext())
             {
                 var db = new DataBase(context);
                 db.ClearDataBase();
                 db.AddProject(project);
+                int id = db.GetAllProjects().Last().Id;
 
                 //Act
-                db.AddTargetInProject(2, target);
-                result = db.GetProjectById(2);
-                target = new ProjectTarget { Id = 1, Name = "Test Target for Project", IsAchieved = false, ProjectId = 2 };
+                db.AddTargetInProject(id, target);
+                result = db.GetProjectById(id).Targets.Last();
+                target = new ProjectTarget { Id = db.GetAllProjectTargets().Last().Id, Name = "Test Target for Project", IsAchieved = false, ProjectId = id };
             }
 
             //Assert
-            Assert.Equal<ProjectTarget>(result.Targets.First(), target);
-        }*/
+            Assert.True(result.Id ==  target.Id
+                && result.Name == target.Name
+                && result.IsAchieved == target.IsAchieved
+                && result.ProjectId == target.ProjectId);
+        }
+        [Fact]
+        public void UpdateTargetInProject()
+        {
+            //Arrange
+            Project project = new Project { Name = "Test Project" };
+            ProjectTarget target = new ProjectTarget { Name = "Test Target for Project", IsAchieved = false };
+            ProjectTarget result;
+            using (var context = GetContext())
+            {
+                var db = new DataBase(context);
+                db.ClearDataBase();
+                db.AddProject(project);
+                int id = db.GetAllProjects().Last().Id;
+                db.AddTargetInProject(id, target);
+                result = db.GetProjectById(id).Targets.Last();
+                target = new ProjectTarget { Id = db.GetAllProjectTargets().Last().Id, Name = "Changed Test Target for Project", IsAchieved = true, ProjectId = id };
+
+                //Act
+                db.UpdateTargetInProject(id, target);
+            }
+
+            //Assert
+            Assert.True(result.Id == target.Id
+                && result.Name == target.Name
+                && result.IsAchieved == target.IsAchieved
+                && result.ProjectId == target.ProjectId);
+        }
+        [Fact]
+        public void DeleteTargetInProject()
+        {
+            //Arrange
+            Project project = new Project { Name = "Test Project" };
+            ProjectTarget target = new ProjectTarget { Name = "Test Target for Project", IsAchieved = false };
+            int result;
+            using (var context = GetContext())
+            {
+                var db = new DataBase(context);
+                db.ClearDataBase();
+                db.AddProject(project);
+                int id = db.GetAllProjects().Last().Id;
+                db.AddTargetInProject(id, target);
+
+                //Act
+                db.DeleteTargetFromProject(db.GetAllProjectTargets().Last().Id);
+                result = db.GetProjectById(id).Targets.Count;
+            }
+
+            //Assert
+            Assert.True(result == 0);
+        }
+        [Fact]
+        public void AddStage()
+        {
+            //Arrange
+            Project project = new Project { Name = "Test Project" };
+            Stage stage = new Stage { Name = "Test Stage for Test Project", Priority = 2, };
+            int result;
+            using (var context = GetContext())
+            {
+                var db = new DataBase(context);
+                db.ClearDataBase();
+                db.AddProject(project);
+                int id = db.GetAllProjects().Last().Id;
+
+                //Act
+                db.AddStage(id, stage);
+                result = db.GetAllStage().Count;
+            }
+
+            //Assert
+            Assert.True(result == 1);
+        }
 
         private DBContext GetContext()
         {
