@@ -10,20 +10,20 @@ namespace IDQ_0__Personal_Secretary.Controllers
 {
     public class ProjectController : Controller
     {
-        private DBContext db;
+        private DataBase db;
 
         public ProjectController(DBContext context)
         {
-            db = context;
+            db = new DataBase(context);
         }
 
         [ActionName("all")]
         public IActionResult Index()
         {
-            return View("All", db.Projects.OrderByDescending(s => s.Priority).ToList());
+            return View("All", db.GetAllProjects());
         }
 
-        [HttpGet]
+        /*[HttpGet]
         [ActionName("addProject")]
         public IActionResult Add()
         {
@@ -69,6 +69,6 @@ namespace IDQ_0__Personal_Secretary.Controllers
             ViewBag.Name = project.Name;
             return View("ViewProject", db.Stages.Where(s=> s.ProjectId == id)
                 .OrderByDescending(s=> s.Priority).ToList());
-        }
+        }*/
     }
 }

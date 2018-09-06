@@ -10,26 +10,23 @@ using IDQ_0__Personal_Secretary.Models.DataBase.Entities;
 
 namespace IDQ_0__Personal_Secretary.Controllers
 {
-    public class PR
-    {
-        public string Name { get; set; }
-        public int Priority { get; set; }
-        public string Description { get; set; }
-    }
     public class HomeController : Controller
     {
         private DataBase data;
-        public HomeController()
-        {
 
-        }
         public HomeController(DBContext context)
         {
             data = new DataBase(context);
         }
-        public string Index()
+        [HttpGet]
+        public IActionResult Index()
         {
-            return "Index";
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Index(string login, string password)
+        {
+            return LocalRedirect("~/Project/all");
         }
     }
 }

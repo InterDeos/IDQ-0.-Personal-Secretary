@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" href="~/css/layout/normalize.css">
+    <link rel="stylesheet" href="~/css/view/FrontPageStyle.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+</head>
+<body>
+    <article>
+        <div class="container">
+            <div class="logo">
+                <img src="~/images/Icon_81_192.png" alt="Logo">
+                <h1>IDQ 1.</h1>
+                <h2>Personal Secretary</h2>
+            </div>
+            <div class="greeting">
+                @RenderBody()
+                <nav>
+                    <a class="button nav_button" href="#">About Us</a>
+                    <a class="button nav_button" href="#">Regestration</a>
+                </nav>
+            </div>
+        </div>
+    </article>
+</body>
+</html>

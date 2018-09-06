@@ -1,0 +1,252 @@
+:root{
+    --backgroundColor: #0f0f0f;
+    
+    --emphColor: #0370d5;
+    --emphBkColor: rgb(0, 46, 89);
+    
+    --mainFColor: #cdcdcd;
+    --accenFColor: #d54040;
+    
+    --h1FontSize: 28px;
+    --h2FontSize: 22px;
+    --h3FontSize: 16px;
+    --pFontSize: 13px;
+    
+    --h1FW:700;
+    --h2FW:600;
+    --h3FW:500;
+    --pFW: 400;
+}
+*, *:before, *:after{
+    box-sizing: border-box;
+}
+
+h1{
+    font-size: var(--h1FontSize);
+}
+h2{
+    font-size: var(--h2FontSize);
+}
+h3{
+    font-size: var(--h3FontSize);
+}
+p{
+    font-size: var(--pFontSize);
+}
+i{
+    color: var(--emphColor);
+    font-size: 24px;
+}
+
+body{
+    height: 100vh;
+    width: 100%;
+    
+    
+    font-family: 'Roboto', sans-serif;
+    font-weight: var(--pFW);
+    color: var(--mainFColor);
+    
+    display: flex;
+    flex-direction: column;
+    background: url(../../source/img/bck_img_drkblue.png) var(--backgroundColor);
+}
+header{
+    position: fixed;
+    z-index: 3;
+    
+    width: 100%;
+    
+    display: flex;
+    justify-content: center;
+    padding: 5px 0px;
+    background-color: var(--backgroundColor);
+    
+    -webkit-box-shadow: 0px 0px 15px 8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 15px 8px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 15px 8px rgba(0,0,0,0.75);
+}
+article{
+    height: auto;
+    width: 100%;
+    
+    margin-top: 8%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dis{
+    display: none;
+}
+.wrapper{
+    max-width: 1330px;
+    width: 100%;
+}
+.text_article{
+    font-weight: var(--h3FW);
+    color: var(--accenFColor);
+}
+.button{
+    border: solid 3px var(--emphColor);
+    
+    color: var(--mainFColor);
+    font-size: var(--h3FontSize);
+    font-weight: var(--h2FW);
+    text-align: center;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    cursor: pointer;
+    opacity: 0.85;
+}
+.button:hover{
+    opacity: 1;
+    background-color: var(--emphBkColor);
+    
+    -webkit-box-shadow: 0px 0px  16px 5px var(--emphBkColor);
+    -moz-box-shadow: 0px 0px  16px 5px var(--emphBkColor);
+    box-shadow: 0px 0px 16px 5px (--emphBkColor);
+}
+.button:active{
+    -webkit-box-shadow: inset 3px 3px 10px 7px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 3px 3px 10px 7px rgba(0,0,0,0.75);
+    box-shadow: inset 3px 3px 10px 7px rgba(0,0,0,0.75);
+}
+
+.checkbox{
+    cursor: pointer;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+.checkbox .check_text{
+    cursor: pointer;
+    margin-left: 15px;
+}
+.check{
+    display: none;
+}
+.check + label{
+    cursor: pointer;
+    display: block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid green;
+    text-align: right;
+}
+.check + label:before{
+    content: '\2713';
+    display: inline-block;
+    color: green;
+    font-size: 30px;
+    line-height: 30px;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+.check:checked + label:before{
+    -webkit-transform: scale(1);
+    transform: scale(1.5);
+}
+.check:checked + label + .check_text{
+    text-decoration:line-through;
+}
+
+.text_input{
+    height: 30px;
+    width: 220px;
+    padding: 3px;
+    
+    font-size: var(--h3FontSize);
+    font-weight: var(--h3FW);
+    
+    color: var(--emphColor);
+    background: none;
+    border: solid 3px var(--emphColor);
+}
+.text_input:focus{
+    color: var(--clearWhite);
+    background-color: var(--emphBkColor);
+    outline: none;
+}
+::placeholder {
+    color: var(--emphColor);
+}
+
+.progress_bar{
+    width: 100%;
+    border: solid 3px var(--emphColor);
+    margin: 10px 0px;
+    
+    -webkit-box-shadow: 0px 0px  1px 1px var(--emphBkColor);
+    -moz-box-shadow: 0px 0px  1px 1px var(--emphBkColor);
+    box-shadow: 0px 0px 1px 1px (--emphBkColor);
+}
+.progress_bar .bar{
+    padding: 5px;
+    background-color: var(--emphColor);
+    text-align: center;
+    width: 35%;
+    
+     
+    -webkit-text-shadow: 0px 0px 10px var(--emphBkColor);
+    -moz-text-shadow: 0px 0px 10px var(--emphBkColor);
+    text-shadow: 0px 0px 10px #000000;
+}
+
+/**
+Test Selector not used
+**/
+.selector{
+    width: 225px;
+}
+.selector select {
+    font-size: var(--h2FontSize);
+    opacity: 0.8;
+    display: inline-block;
+    width: 100%;
+    padding: 7px;
+    
+    position: relative;
+    z-index: 0;
+    
+    cursor: pointer;
+    outline: 0;
+    
+    border: solid 3px var(--emphColor);
+    color: var(--mainFColor);
+    background-color: var(--backgroundColor);
+    
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+.selector select::-ms-expand {
+    display: none;
+}
+.selector select:hover,
+.selector select:focus {
+    opacity: 1;
+    background: var(--emphBkColor);
+}
+.selector select:disabled {
+    opacity: 0.8;
+    pointer-events: none;
+}
+.selector .arrow_down{
+    position: relative;
+    z-index: 1;
+    right: 15px;
+    top: -30px;
+    float: right;
+    pointer-events: none;
+    width: 10px;
+    border-style: solid;
+    border-width: 15px 7px 0px 7px;
+    border-color: var(--emphColor) transparent transparent transparent;
+}

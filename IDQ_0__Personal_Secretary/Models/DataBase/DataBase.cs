@@ -22,7 +22,13 @@ namespace IDQ_0__Personal_Secretary.Models.DataBase
 
         public List<Project> GetAllProjects()
         {
-            return db.Projects.ToList();
+            var temp = db.Projects.ToList();
+            List<Project> projects = new List<Project>();
+            foreach(var t in temp)
+            {
+                projects.Add(GetProjectById(t.Id));
+            }
+            return projects;
         }
         public List<Stage> GetAllStage()
         {
@@ -139,7 +145,8 @@ namespace IDQ_0__Personal_Secretary.Models.DataBase
             if (projects.Any())
             {
                 var temp = projects.First();
-                temp.Targets = db.Projects.Where(p => p.Id == id).First().Targets.ToList();
+                var targets = db.ProjectTargets.Where(t => t.ProjectId == id).ToList();
+                if(targets.Any()) temp.Targets = targets;
                 return temp.Initialize();
             }
                 

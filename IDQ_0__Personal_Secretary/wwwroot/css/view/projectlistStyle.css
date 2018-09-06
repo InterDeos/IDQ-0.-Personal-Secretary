@@ -1,0 +1,78 @@
+.project:hover{
+    background-color: var(--backgroundColor);
+    
+    -webkit-box-shadow: 0px 0px 10px 5px var(--emphColor);
+    -moz-box-shadow: 0px 0px 10px 5px var(--emphColor);
+    box-shadow: 0px 0px 10px 5px var(--emphColor);
+}
+.pr_header{
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.pr_contant{
+    margin-top: 15px;
+}
+
+.article_information{
+    margin: 2px 0px;
+}
+.article_information h3{
+    display: flex;
+    margin: 0;
+    align-items: center;
+}
+.article_information h3 div:first-child{
+    width: 6%;
+}
+.article_information h3 div{
+    margin-right: 10px;
+}
+
+.priority{
+    margin-bottom: 10px;
+}
+.priority_value{
+    display: flex;
+    align-items: center;
+    text-shadow: 0px 0px 10px #000000;
+    height: 24px;
+    position: relative;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 17px;
+    background: #007bff;
+}
+.priority_value:before{
+  content: "";
+  position: relative;
+}
+.priority_value:before {
+    position: absolute;
+    top: 0;
+    left: -17px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 12px 17px 12px 0;
+    border-color: transparent #007bff transparent transparent;
+}
+
+.check_list{
+    padding-left: 35px;
+}
+
+.description .text{
+    padding-left: 25px;
+}
+.budget .article_information  h3 .text_article,.participants .article_information  h3 .text_article{
+    width: 11%;
+}
+.progress{
+    margin: 10px 0px;
+}
+
+
+
+
